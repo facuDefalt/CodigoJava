@@ -1,0 +1,68 @@
+package rutatlantica;
+import Entidades.ClienteGeneral;
+import Entidades.Viaje;
+import Servicios.ClienteServicio;
+import static Servicios.ClienteServicio.ingresarDatosCliente;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+/**
+ *
+ * @author facun
+ */
+public class Rutatlantica {
+
+   
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        ArrayList<ClienteGeneral> clientes = new ArrayList<>();
+        Map<Integer, ArrayList<ClienteGeneral>> clientesPorMes = new HashMap<>();
+        String respuesta;
+        do{
+            System.out.println("Desea Ingresar un cliente?");
+            respuesta=scanner.nextLine();
+        }while((!respuesta.equalsIgnoreCase("si")) && (!respuesta.equalsIgnoreCase("no")));
+        
+        while (!respuesta.equalsIgnoreCase("no")) {
+            // Ingresar datos de los clientes y realizar seguimiento por mes
+            ClienteGeneral cliente = ingresarDatosCliente();
+            clientes.add(cliente);
+
+            // Realizar un seguimiento de los clientes por mes
+            int mesViaje = cliente.getViaje().getMes();
+            clientesPorMes.computeIfAbsent(mesViaje, k -> new ArrayList<>()).add(cliente);
+
+            // Preguntar si desea ingresar otro cliente
+            System.out.println("¿Desea ingresar otro cliente? (Sí/No):");
+            respuesta = scanner.next().toLowerCase();
+        }
+
+        // Identificar el mes con más clientes
+        int mesConMasClientes = -1;
+        int maxClientes = 0;
+
+        for (Map.Entry<Integer, ArrayList<ClienteGeneral>> entry : clientesPorMes.entrySet()) {
+            int mes = entry.getKey();
+            int numClientes = entry.getValue().size();
+
+            if (numClientes > maxClientes) {
+                mesConMasClientes = mes;
+                maxClientes = numClientes;
+            }
+        }
+        if(mesConMasClientes!=-1){
+            // Mostrar resultados
+            System.out.println("\nMes con más clientes: " + mesConMasClientes);
+            System.out.println("Clientes en ese mes:");
+
+            ArrayList<ClienteGeneral> clientesDelMes = clientesPorMes.get(mesConMasClientes);
+            for (ClienteGeneral cliente : clientesDelMes) {
+                System.out.println("Nombre: " + cliente.getNombre() + ", Apellido: " + cliente.getApellido());
+            }
+        }else{
+            System.out.println("No hubo ingresos");
+        }
+    }
+}
