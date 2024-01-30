@@ -1,0 +1,38 @@
+package Entidades;
+
+/**
+ *
+ * @author facun
+ */
+public class Viaje {
+    private String Destino;
+    private Integer Mes;
+
+    public Viaje(String Destino, Integer Mes) {
+        this.Destino = Destino;
+        this.Mes = Mes;
+    }
+
+    public String getDestino() {
+        return Destino;
+    }
+
+    public void setDestino(String Destino) {
+        this.Destino = Destino;
+    }
+
+    public Integer getMes() {
+        return Mes;
+    }
+
+    public void setMes(Integer Mes) {
+        this.Mes = Mes;
+    }
+
+    @Override
+    public String toString() {
+        return "Viaje{" + "Destino=" + Destino + ", Mes=" + Mes + '}';
+    }
+    
+   
+}
