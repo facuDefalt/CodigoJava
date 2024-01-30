@@ -1,0 +1,69 @@
+package Entidades;
+
+/**
+ *
+ * @author facun
+ */
+public class ClienteGeneral {
+    private String Nombre;
+    private String Apellido;
+    private Integer edad;
+    private Integer DNI;
+    private Viaje viaje;
+
+    public ClienteGeneral(String Nombre, String Apellido, Integer edad, Integer DNI, Viaje viaje){
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.edad = edad;
+        this.DNI = DNI;
+        this.viaje = viaje;
+    }
+    
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getApellido() {
+        return Apellido;
+    }
+
+    public void setApellido(String Apellido) {
+        this.Apellido = Apellido;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public Integer getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(Integer DNI) {
+        this.DNI = DNI;
+    }
+
+    public Viaje getViaje() {
+        return viaje;
+    }
+
+    public void setViaje(Viaje viaje) {
+        this.viaje = viaje;
+    }
+
+    @Override
+    public String toString() {
+        return "ClienteGeneral{" + "Nombre=" + Nombre + ", Apellido=" + Apellido + ", edad=" + edad + ", DNI=" + DNI + ", viaje=" + viaje + '}';
+    }
+    
+    
+}
